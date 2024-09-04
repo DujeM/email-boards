@@ -1,113 +1,115 @@
+import Navbar from "@/components/navbar";
+import Sidebar from "@/components/sidebar";
 import Image from "next/image";
+import Link from "next/link";
+import { redirect } from "next/navigation";
+import Stripe from "stripe";
 
-export default function Home() {
+export default async function Home() {
+  const includedFeatures = [
+    'Gmail authentication',
+    'Add email connections',
+    'Manage specific connection boards',
+    'Seamless ticket management',
+  ];
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <>
+    <Navbar />
+    <div className="hero my-20">
+      <div className="hero-content">
+        <div>
+          <h1 className="text-5xl font-bold">Turn your emails into manageable tickets</h1>
+          <p className="py-6">Simplify your workflow, boost productivity, and ensure no customer query goes unanswered</p>
+          <a href="#cta" className="btn btn-outline !text-black">Get started</a>
+        </div>
+        <Image src={'/svg/inbox.svg'} alt="Online payments" width={640} height={530} className="hidden md:block"/>
+      </div>
+    </div>
+    <div className="bg-slate-100 border-t-4 border-b-4 border-black my-20 py-10 px-4">
+      <h2 className="text-4xl md:text-5xl font-bold text-center">Bloat free software, focused on getting things done</h2>
+      <p className="py-6 text-center text-lg">Streamline your email communication, transform your emails into organized, actionable tasks.</p>
+    </div>
+    <div className="flex p-5 gap-5 justify-center md:justify-between flex-wrap max-w-7xl mx-auto my-20">
+      <div className="card w-96 h-96 shadow-xl border-4 border-black">
+        <figure className="bg-white p-5 h-60">
+          <Image src={'/svg/connection.svg'} alt="Connections" width={384} height={226} className="p-5 h-64" />
+        </figure>
+        <div className="card-body p-2 gap-0 rounded-es-2xl rounded-ee-2xl h-36 sm:p-5 sm:gap-2 border-t-4 border-black">
+          <h2 className="card-title">Add connections</h2>
+          <p>You are in control, add connections based on emails that you want to focus on</p>
         </div>
       </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <div className="card w-96 h-96 shadow-xl border-4 border-black">
+        <figure className="bg-white p-5 h-60">
+          <Image src={'/svg/boards.svg'} alt="Boards" width={384} height={226} className="p-5 h-64" />
+        </figure>
+        <div className="card-body p-2 gap-0 rounded-es-2xl rounded-ee-2xl h-36 sm:p-5 sm:gap-2 border-t-4 border-black">
+          <h2 className="card-title">Manage your boards</h2>
+          <p>Each connection has it's own board, simple overview of unread emails and tickets in progress</p>
+        </div>
       </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+      <div className="card w-96 h-96 shadow-xl border-4 border-black">
+        <figure className="bg-white p-5 h-60">
+          <Image src={'/svg/tickets.svg'} alt="Tickets" width={384} height={226} className="p-5 h-64" />
+        </figure>
+        <div className="card-body p-2 gap-0 rounded-es-2xl rounded-ee-2xl h-36 sm:p-5 sm:gap-2 border-t-4 border-black">
+          <h2 className="card-title">Easy ticket management</h2>
+          <p>Simple ticket creation, quick note taking</p>
+        </div>
       </div>
-    </main>
+    </div>
+    <div id="cta" className="py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl sm:text-center">
+          <h2 className="text-5xl font-bold sm:text-4xl">Simple no-tricks pricing</h2>
+          <p className="mt-6 text-lg leading-8">
+            Start growing your business today, no hidden costs, pay once own it forever
+          </p>
+        </div>
+        <div className="border-4 border-black mx-auto mt-16 max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none">
+          <div className="p-8 sm:p-10 lg:flex-auto">
+            <h3 className="text-2xl font-bold tracking-tight">Lifetime membership</h3>
+            <p className="mt-6 text-base leading-7">
+              
+            </p>
+            <div className="mt-10 flex items-center gap-x-4">
+              <h4 className="flex-none text-sm font-semibold leading-6 text-orng">What’s included</h4>
+              <div className="h-px flex-auto bg-orng" />
+            </div>
+            <ul
+              role="list"
+              className="mt-8 grid grid-cols-1 gap-4 text-sm leading-6 sm:grid-cols-2 sm:gap-6"
+            >
+              {includedFeatures.map((feature) => (
+                <li key={feature} className="flex gap-x-3">
+                  <svg className="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8.5 11.5 11 14l4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                  </svg>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="-mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">
+            <div className="rounded-2xl bg-gray-50 py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16">
+              <div className="mx-auto max-w-xs px-8">
+                <p className="text-base font-semibold text-gray-600">Pay once, own it forever</p>
+                <p className="mt-6 flex items-baseline justify-center gap-x-2">
+                  <span className="text-5xl font-bold tracking-tight text-gray-900">€49.99</span>
+                </p>
+                <Link href={'/login'} className="btn btn-outline text-black mt-3">Get access</Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer className="footer footer-center bg-base-300 text-base-content p-4">
+      <aside>
+        <p>EmailBoards © {new Date().getFullYear()} - All right reserved by Excode.hr</p>
+      </aside>
+    </footer>
+    </>
   );
 }
