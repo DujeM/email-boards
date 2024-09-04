@@ -24,7 +24,7 @@ export default function UpdateNotes({ currentNote, ticketId }: { currentNote: st
     return (
         <form ref={formRef} action={updateTicketNote}>
             <input type="text" name="ticketId" defaultValue={ticketId} hidden />
-            <textarea className="textarea textarea-ghost w-full" name="notes" defaultValue={currentNote} onChange={(e) => setNote(e.target.value)}></textarea>
+            <textarea className="textarea textarea-ghost w-full focus:bg-opacity-5 !text-black" name="notes" defaultValue={currentNote} onChange={(e) => setNote(e.target.value)}></textarea>
         </form>
     )
 }

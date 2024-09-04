@@ -1,9 +1,8 @@
 import Navbar from "@/components/navbar";
 import Sidebar from "@/components/sidebar";
+import { Video } from "@/components/video";
 import Image from "next/image";
 import Link from "next/link";
-import { redirect } from "next/navigation";
-import Stripe from "stripe";
 
 export default async function Home() {
   const includedFeatures = [
@@ -59,6 +58,7 @@ export default async function Home() {
         </div>
       </div>
     </div>
+    <Video/>
     <div id="cta" className="py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl sm:text-center">

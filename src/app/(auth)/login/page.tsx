@@ -10,8 +10,8 @@ export default async function LoginPage() {
         const { data, error } = await supabase.auth.signInWithOAuth({
             provider: 'google',
             options: {
-              redirectTo: 'http://localhost:3000/callback',
-              scopes: "https://www.googleapis.com/auth/gmail.labels https://www.googleapis.com/auth/gmail.readonly",
+              redirectTo: 'https://www.emailboards.com/callback',
+              scopes: "https://www.googleapis.com/auth/gmail.modify",
               queryParams: {
                 prompt: 'consent'
               }

@@ -29,15 +29,20 @@ export async function markAsRead(formData: FormData) {
   auth.setCredentials({ access_token: cookies().get("access_token")?.value });
   const gmail = google.gmail({ version: "v1", auth });
   const emailId = formData.get("emailId") as string;
-  const res = await gmail.users.messages.modify({
-    userId: "me",
-    id: emailId,
-    requestBody: {
-      addLabelIds: [],
-      removeLabelIds: ["UNREAD"],
-    },
-  });
-  revalidatePath("/connections");
+
+  try {
+    const res = await gmail.users.messages.modify({
+      userId: "me",
+      id: emailId,
+      requestBody: {
+        addLabelIds: [],
+        removeLabelIds: ["UNREAD"],
+      },
+    });
+    revalidatePath("/connections");
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export async function createTicket(formData: FormData) {

@@ -20,7 +20,7 @@ export default async function ConnectionsPage() {
             ],
             mode: 'payment',
             customer_email: user.data.user?.email,
-            success_url: 'http://localhost:3000/success?sessionId={CHECKOUT_SESSION_ID}',
+            success_url: 'https://www.emailboards.com/success?sessionId={CHECKOUT_SESSION_ID}',
             automatic_tax: {enabled: true},
           });
 
