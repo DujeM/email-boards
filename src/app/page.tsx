@@ -105,10 +105,11 @@ export default async function Home() {
         </div>
       </div>
     </div>
-    <footer className="footer footer-center bg-base-300 text-base-content p-4">
+    <footer className="footer footer-center bg-base-300 text-base-content p-4 flex justify-between">
       <aside>
         <p>EmailBoards © {new Date().getFullYear()} - All right reserved by Excode.hr</p>
       </aside>
+      <Link href={'/privacy'}>Privacy</Link>
     </footer>
     </>
   );
