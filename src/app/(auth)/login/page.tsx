@@ -10,14 +10,11 @@ export default async function LoginPage() {
         const { data, error } = await supabase.auth.signInWithOAuth({
             provider: 'google',
             options: {
-              redirectTo: 'https://www.emailboards.com/callback',
+              redirectTo: 'https://emailboards.com/callback',
               scopes: "https://www.googleapis.com/auth/gmail.modify",
-              queryParams: {
-                prompt: 'consent'
-              }
             },
           })
-          
+
           if (data.url) {
             redirect(data.url) // use the redirect API for your server framework
           }

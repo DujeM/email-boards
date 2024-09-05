@@ -190,7 +190,7 @@ export default async function PrivacyPolicyPage() {
             <h2>Contact Us</h2>
             <p>If you have any questions about this Privacy Policy, You can contact us:</p>
             <ul>
-            <li>By email: duje@excode.hr</li>
+            <li>By email: dujemarusic@gmail.com</li>
             </ul>
         </>
     )
