@@ -34,7 +34,7 @@ export default async function Sidebar() {
             </a>
             <CreateConnection />
             {connections.data?.map(connection => (
-                <li key={connection.id}><Link href={`${connection.id}`}>{connection.fullName}</Link></li>
+                <li key={connection.id}><Link href={`/connections/${connection.id}`}>{connection.fullName}</Link></li>
             ))}
             <form className="mt-auto" action={signOut}>
                 <button type="submit" className="btn btn-outline text-black w-full">
