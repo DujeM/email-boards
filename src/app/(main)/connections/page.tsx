@@ -8,24 +8,24 @@ export default async function ConnectionsPage() {
     const user = await supabase.auth.getUser();
     const profile = await supabase.from('Profile').select().eq('userId', user.data.user?.id).single();
 
-    if (!profile.data.paymentCompleted) {
-        const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
+    // if (!profile.data.paymentCompleted) {
+    //     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 
-        const checkout = await stripe.checkout.sessions.create({
-            line_items: [
-              {
-                price: 'price_1Pud0GRrNnLvy6TVidFLqalY',
-                quantity: 1
-              }
-            ],
-            mode: 'payment',
-            customer_email: user.data.user?.email,
-            success_url: 'https://www.emailboards.com/success?sessionId={CHECKOUT_SESSION_ID}',
-            automatic_tax: {enabled: true},
-          });
+    //     const checkout = await stripe.checkout.sessions.create({
+    //         line_items: [
+    //           {
+    //             price: 'price_1Pud0GRrNnLvy6TVidFLqalY',
+    //             quantity: 1
+    //           }
+    //         ],
+    //         mode: 'payment',
+    //         customer_email: user.data.user?.email,
+    //         success_url: 'https://www.emailboards.com/success?sessionId={CHECKOUT_SESSION_ID}',
+    //         automatic_tax: {enabled: true},
+    //       });
 
-          redirect(checkout.url ?? '');
-    }
+    //       redirect(checkout.url ?? '');
+    // }
 
     const connections = await supabase.from('Connection').select().eq('userId', user.data.user?.id)
 
