@@ -36,9 +36,10 @@ export default async function ConnectionsPage() {
     return (
     <>
     <div className="hero my-20">
-      <div className="hero-content flex-col">
+      <div className="hero-content">
         <div>
-          <h2 className="text-2xl font-bold">Start using EmailBoards by creating a new connection in the sidebar</h2>
+          <h2 className="text-5xl font-bold">Welcome to EmailBoards</h2>
+          <p className="text-lg py-6">Create your first connection for free after that to create multiple connections and get all upcoming features consider buying the full version of EmailBoards.</p>
         </div>
         <Image src={'/svg/start.svg'} alt="Start" width={640} height={530} className="hidden md:block"/>
       </div>
