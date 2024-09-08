@@ -58,7 +58,6 @@ export default async function Home() {
         </div>
       </div>
     </div>
-    <Video/>
     <div id="cta" className="py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl sm:text-center">
